@@ -1,0 +1,1 @@
+export const greet = (text: string): void => console.log(text);
