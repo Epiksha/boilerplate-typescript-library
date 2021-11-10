@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -12,6 +13,8 @@ module.exports = {
         filename: 'index.js',
         path: resolve(__dirname, 'dist'),
     },
+    
+    devtool: 'source-map',
 
     resolve: {
         extensions: ['.ts', '.js', 'scss', 'sass'],
@@ -19,11 +22,15 @@ module.exports = {
 
     optimization: {
         minimizer: [
-            
+            new TerserPlugin({
+                terserOptions: {
+                    compress: false,
+                },
+            }),
             new CssMinimizerPlugin()
         ]
     },
-
+    
     plugins: [
         new MiniCssExtractPlugin()
     ],
