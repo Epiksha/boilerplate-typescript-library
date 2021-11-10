@@ -1,1 +1,1 @@
-export const greet = (text: string): void => console.log(text);
+export default () => (num: number) => 5 * num;
