@@ -1,0 +1,14 @@
+src
+demo
+
+# files
+*.log
+*.code-workspace
+
+# toolchain
+webpack.config.js
+tsconfig.json
+.eslintrc.js
+
+.vscode
+.git

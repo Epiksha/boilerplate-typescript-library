@@ -1,23 +1,32 @@
 const { resolve } = require('path');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     entry: {
-        main: ['./src/index.ts', './src/sass/index.scss'],
+        index: ['./src/index.ts', './src/sass/index.scss'],
     },
 
     output: {
         clean: true,
         filename: 'index.js',
         path: resolve(__dirname, 'dist'),
+        library: 'UnnamedLibrary',
+        globalObject: 'this',
+    },
+
+    watchOptions: {
+        aggregateTimeout: 600,
+        ignored: /node_modules/,
     },
     
     devtool: 'source-map',
 
     resolve: {
-        extensions: ['.ts', '.js', 'scss', 'sass'],
+        extensions: ['.ts', 'tsx', '.js', 'scss', 'sass'],
     },
 
     optimization: {
@@ -32,28 +41,27 @@ module.exports = {
     },
     
     plugins: [
-        new MiniCssExtractPlugin()
+        new ESLintPlugin(),
+        new MiniCssExtractPlugin(),
+        new CleanWebpackPlugin({
+            cleanStaleWebpackAssets: false,
+            cleanOnceBeforeBuildPatterns: [resolve(__dirname, "./dist")],
+        }),
     ],
 
     module: {
         rules: [
             {
                 test: /\.[jt]s?$/,
-                enforce: 'pre',
                 use: [
                     {
+                        loader: 'babel-loader',
                         options: {
-                            eslintPath: 'eslint',
-
+                            presets: ['@babel/preset-env'],
                         },
-                        loader: 'eslint-loader',
                     },
+                    'ts-loader',
                 ],
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.[jt]s?$/,
-                loader: 'babel-loader',
                 exclude: /node_modules/,
             },
             {

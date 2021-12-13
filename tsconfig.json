@@ -1,29 +1,15 @@
 {
     "compilerOptions": {
-        "baseUrl": "./src",
-        "paths": {
-            "types/*": ["./types/*"]
-        },
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "noEmit": true,
-        "sourceMap": true,
+        "baseUrl": "./",
         "declaration": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "experimentalDecorators": true,
-        "noFallthroughCasesInSwitch": true,
-        "lib": ["dom", "es2019.array"],
+        "esModuleInterop": true,
+        "module": "es6",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "outDir": "dist",
+        "sourceMap": false,
         "target": "ES2021",
-        "noImplicitAny": false
+        "typeRoots": ["@types", "./node_modules/@types"]
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules/**/*"]
+    "exclude": ["node_modules/"]
 }
