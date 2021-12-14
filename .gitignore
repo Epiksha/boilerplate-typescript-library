@@ -1,11 +1,8 @@
-# dependencies
 /node_modules
-
 /dist
-
 *.log
-
-# IDE - VSCode
+.husky
+coverage/
 .vscode
 .vscode/*
 !.vscode/settings.json
@@ -13,4 +10,3 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-.husky

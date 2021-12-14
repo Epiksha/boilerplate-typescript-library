@@ -1,7 +1,3 @@
-export default () => (num: number) => 5 * num;
+import helloWorld from './utils/helloworld';
 
-const attempt = () => {
-    return 'Hello World!';
-};
-
-console.log(attempt());
+console.log(helloWorld());
