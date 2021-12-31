@@ -1,5 +1,7 @@
+# Directories
 src
 demo
+tests
 
 # files
 *.log
